@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ReviewLog</string>
+    <string name="signup_screen_title">SignUp</string>
+    <string name="login_screen_title">LogIn</string>
+    <string name="home_screen_title">Home</string>
+    <string name="back_button">back</string>
+</resources>
