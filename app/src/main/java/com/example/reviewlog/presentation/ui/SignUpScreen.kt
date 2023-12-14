@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -80,7 +79,7 @@ fun SignUpScreen(onNavToLogin: ()->Unit, viewModel : SignUpViewModel) {
                     .fillMaxWidth()
             )
             Button(onClick = { viewModel.signUp(id, password, nickName, Address()) }) {
-                Text(text = "로그인")
+                Text(text = "회원가입")
             }
         }
 

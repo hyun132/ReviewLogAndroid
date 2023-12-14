@@ -81,6 +81,8 @@ dependencies {
 
     implementation ("com.google.accompanist:accompanist-permissions:0.23.1")
 
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.05.01"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     androidTestImplementation("androidx.navigation:navigation-testing:2.6.0")

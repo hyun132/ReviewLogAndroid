@@ -28,7 +28,7 @@ class SignUpViewModel @Inject constructor(private val repository: UserRepository
                 }
 
                 is Resource.Error -> {
-                    state.copy(error = response.message)
+                    state.copy(error = response.message,isLoading = false)
                 }
             }
         }

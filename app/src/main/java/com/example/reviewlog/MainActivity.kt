@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.reviewlog.presentation.ui.HomeScreen
 import com.example.reviewlog.presentation.ui.LoginScreen
+import com.example.reviewlog.presentation.ui.LoginViewModel
 import com.example.reviewlog.presentation.ui.MainViewModel
 import com.example.reviewlog.presentation.ui.NewReviewScreen
 import com.example.reviewlog.presentation.ui.SignUpScreen
@@ -94,14 +95,20 @@ class MainActivity : ComponentActivity() {
 
             NavHost(
                 navController = navHostController,
-                startDestination = Screens.SignUpScreen.route
+                startDestination = Screens.LoginScreen.route
             ) {
                 composable(route = Screens.LoginScreen.route) {
-                    LoginScreen(navHostController)
+                    LoginScreen(
+                        navHostController,
+                        hiltViewModel<LoginViewModel>()
+                    )
                 }
                 composable(route = Screens.SignUpScreen.route) {
 //                            val viewModel = hiltViewModel<SignUpViewModel>(it)
-                    SignUpScreen({navHostController.navigate(Screens.LoginScreen.route)}, hiltViewModel<SignUpViewModel>())
+                    SignUpScreen(
+                        { navHostController.navigate(Screens.LoginScreen.route) },
+                        hiltViewModel<SignUpViewModel>()
+                    )
                 }
                 composable(route = Screens.HomeScreen.route) {
                     HomeScreen(navHostController)

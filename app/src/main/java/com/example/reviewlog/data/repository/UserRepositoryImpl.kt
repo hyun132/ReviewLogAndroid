@@ -1,6 +1,8 @@
 package com.example.reviewlog.data.repository
 
+import com.example.reviewlog.data.remote.LoginDto
 import com.example.reviewlog.data.remote.SignUpDto
+import com.example.reviewlog.data.remote.TokenInfoDto
 import com.example.reviewlog.data.remote.UserApi
 import com.example.reviewlog.data.remote.UserDto
 import com.example.reviewlog.domain.model.Resource
@@ -24,11 +26,27 @@ class UserRepositoryImpl @Inject constructor(private val api: UserApi) : UserRep
     override suspend fun logIn(
         id: String,
         password: String
-    ): Resource<UserDto> {
+    ): Resource<TokenInfoDto> {
         val result =
-            api.login(id = id, password = password)
+            api.login(LoginDto(id,password))
+        return if (result.isSuccessful) {
+            Resource.Success(result.body()?.data)
+        } else Resource.Error<TokenInfoDto>(message = result.message())
+    }
+
+    override suspend fun autoLogin(): Resource<TokenInfoDto> {
+        val result = api.autoLogin()
+        return if (result.isSuccessful) {
+            Resource.Success(result.body()?.data)
+        } else Resource.Error<TokenInfoDto>(message = result.message())
+    }
+
+    override suspend fun getUserInfo(): Resource<UserDto> {
+        val result = api.userInfo()
         return if (result.isSuccessful) {
             Resource.Success(result.body())
         } else Resource.Error<UserDto>(message = result.message())
     }
+
+
 }

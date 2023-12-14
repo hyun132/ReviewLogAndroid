@@ -1,11 +1,14 @@
 package com.example.reviewlog.di
 
+import android.content.Context
 import com.example.reviewlog.data.remote.UserApi
+import com.example.reviewlog.presentation.util.DataStoreUtil
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,4 +43,9 @@ object AppModule {
             .build()
             .create()
     }
+
+    @Provides
+    @Singleton
+    fun provideDataStore(@ApplicationContext context: Context) = DataStoreUtil.getDatastore(context)
+
 }
